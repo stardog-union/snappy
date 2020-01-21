@@ -44,13 +44,13 @@
 #include <stddef.h>
 #endif  // HAVE_STDDEF_H
 
-#if 1  // HAVE_SYS_UIO_H
+#ifndef _WIN32  // HAVE_SYS_UIO_H
 #include <sys/uio.h>
 #endif  // HAVE_SYS_UIO_H
 
-#define SNAPPY_MAJOR 
-#define SNAPPY_MINOR 
-#define SNAPPY_PATCHLEVEL 
+#define SNAPPY_MAJOR
+#define SNAPPY_MINOR
+#define SNAPPY_PATCHLEVEL
 #define SNAPPY_VERSION \
     ((SNAPPY_MAJOR << 16) | (SNAPPY_MINOR << 8) | SNAPPY_PATCHLEVEL)
 
@@ -80,7 +80,7 @@ typedef unsigned long long uint64;
 
 typedef std::string string;
 
-#if !1  // !HAVE_SYS_UIO_H
+#ifdef _WIN32  // !HAVE_SYS_UIO_H
 // Windows does not have an iovec type, yet the concept is universally useful.
 // It is simple to define it ourselves, so we put it inside our own namespace.
 struct iovec {
